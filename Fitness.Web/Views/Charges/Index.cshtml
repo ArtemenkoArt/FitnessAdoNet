@@ -1,0 +1,44 @@
+﻿@model List<Fitness.DataObject.Data.ChargeExtendet>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Charges</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Insert", "Charges")
+</p>
+
+<p>
+    @Html.ActionLink("Back", "Index", "Home")
+</p>
+
+@if (Model != null)
+{
+    <table>
+        <tr>
+            <th>Group name</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Summ</th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<th>item.GroupId</th>*@
+                <td>@item.GroupName</td>
+                <td>@item.Name</td>
+                @*<th>@item.Date.ToString().Substring(0, 10)</th>*@
+                <td>@item.Date.ToString().Replace("00:00:00", "").Trim()</td>
+                <td>@item.Summ</td>
+                <td>
+                    @Html.ActionLink("Edit", "Update", new { id = @item.Id})
+                    @Html.ActionLink("Delete", "Delete", new { id = @item.Id})
+                </td>
+            </tr>
+        }
+
+    </table>
+}
